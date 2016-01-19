@@ -349,7 +349,7 @@ In order to create this role hierarchy, we first add the Employee's *Permission 
       <AllOf>
        <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
         <AttributeValue 
-         DataType="http://www.w3.org/2001/XMLSchema#string">https://acme.com/ticketservice/tickets</AttributeValue>
+ DataType="http://www.w3.org/2001/XMLSchema#string">https://acme.com/tickets</AttributeValue>
         <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
          AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" 
          DataType="http://www.w3.org/2001/XMLSchema#string"
@@ -432,7 +432,7 @@ Then we add the role-based hierarchical policy defining the Employee role and th
        <AllOf>
         <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
          <AttributeValue 
-          DataType="http://www.w3.org/2001/XMLSchema#string">https://acme.com/ticketservice/projects</AttributeValue>
+ DataType="http://www.w3.org/2001/XMLSchema#string">https://acme.com/projects</AttributeValue>
          <AttributeDesignator 
           Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" 
           AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
@@ -454,7 +454,8 @@ Then we add the role-based hierarchical policy defining the Employee role and th
      </Target>
     </Rule>
    </Policy>
-   <!-- This role is senior to the Employee role, therefore includes the Employee role Permission PolicySet -->
+   <!-- This role is senior to the Employee role, 
+     therefore includes the Employee role Permission PolicySet -->
    <PolicySetIdReference>PPS:Employee</PolicySetIdReference>
   </PolicySet>
  </PolicySet>
