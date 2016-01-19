@@ -80,14 +80,23 @@ Domain Creation
 
 You create a domain by doing a HTTP POST request with XML payload to URL: ``http://${SERVER_NAME}:${PORT}/authzforce-ce/domains``. Replace ``${SERVER_NAME}`` and ``${PORT}`` with your server hostname and port for HTTP. You can do it with ``curl`` tool::
 
- $ curl --verbose --trace-ascii - --request POST \ 
+ $ export domainProperties="<?xml version="1.0" encoding="UTF-8" standalone="yes"?> \
+ <ns4:domainProperties \ 
+ xmlns:ns4="http://authzforce.github.io/rest-api-model/xmlns/authz/4" \
+ externalId="external0"> \
+ <description>This is my domain</description> \
+ </ns4:domainProperties>"
+ 
+ $ curl --verbose --request POST \ 
  --header "Content-Type: application/xml;charset=UTF-8" \
- --data '<?xml version="1.0" encoding="UTF-8"?><taz:domainProperties xmlns:taz="http://authzforce.github.io/rest-api-model/xmlns/authz/4"> <name>MyDomain</name><description>This is my domain.</description></taz:domainProperties>' \
- --header "Accept: application/xml" http://${SERVER_NAME}:${PORT}/authzforce-ce/domains
+ --data "$domainProperties" \
+ --header "Accept: application/xml" \
+ http://${SERVER_NAME}:${PORT}/authzforce-ce/domains
+ 
  ...
  > POST /authzforce-ce/domains HTTP/1.1
- > User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
- > Host: az.testbed.fi-ware.eu
+ > User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1
+ > Host: localhost
  > Content-Type: application/xml;charset=UTF-8
  > Accept: application/xml
  > Content-Length: 227
@@ -99,7 +108,9 @@ You create a domain by doing a HTTP POST request with XML payload to URL: ``http
  < Content-Type: application/xml
  < Transfer-Encoding: chunked
  <
- <?xml version="1.0" encoding="UTF-8" standalone="yes"?><link xmlns="http://www.w3.org/2005/Atom" rel="item" href="h_D23LsDEeWFwqVFFMDLTQ" title="h_D23LsDEeWFwqVFFMDLTQ"/>
+ <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ <link xmlns="http://www.w3.org/2005/Atom" rel="item" href="h_D23LsDEeWFwqVFFMDLTQ" 
+ title="h_D23LsDEeWFwqVFFMDLTQ"/>
 
 **WARNING**: Mind the leading and trailing single quotes for the ``--data`` argument. Do not use double quotes instead of these single quotes, otherwise curl will remove the double quotes in the XML payload itself, and send invalid XML which will be rejected by the server. The ``--trace-ascii -`` argument (the last dash here means *stdout*) is indeed a way to check the actual request body sent by ``curl``. So use it only if you need to dump the outgoing (and incoming) data, in particular the request body, on *stdout*.  
 
