@@ -136,69 +136,69 @@ Example of request given below::
 
  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
  <PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="P1"
-   Version="1.0" 
-   PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-unless-permit">
-   <Description>Sample PolicySet</Description>
-   <Target />
-   <Policy PolicyId="MissionManagementApp" Version="1.0"
-     RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit">
-     <Description>Policy for MissionManagementApp</Description>
-     <Target>
-       <AnyOf>
-         <AllOf>
-           <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-             <AttributeValue 
-               DataType="http://www.w3.org/2001/XMLSchema#string">MissionManagementApp</AttributeValue>
-             <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
-               AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" 
-               DataType="http://www.w3.org /2001/XMLSchema#string"
-               MustBePresent="true" />
-           </Match>
-         </AllOf>
-       </AnyOf>
-     </Target>
-     <Rule RuleId="MissionManager_role_can_manage_team" Effect="Permit">
-     <Description>Only MissionManager role authorized to manage the mission team</Description>
-       <Target>
-         <AnyOf>
-           <AllOf>
-             <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-               <AttributeValue 
-                 DataType="http://www.w3.org/2001/XMLSchema#string">Team</AttributeValue>
-               <AttributeDesignator 
-                 Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
-                 AttributeId="urn:thales:xacml:2.0:resource:sub-resource-id" 
-                 DataType="http://www.w3.org/2001/XMLSchema#string"
-                 MustBePresent="true" />
-             </Match>
-           </AllOf>
-         </AnyOf>
-         <AnyOf>
-           <AllOf>
-             <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-               <AttributeValue 
-                 DataType="http://www.w3.org/2001/XMLSchema#string">manage</AttributeValue>
-               <AttributeDesignator 
-                 Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action"
-                 AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" 
-                 DataType="http://www.w3.org/2001/XMLSchema#string"
-                 MustBePresent="true" />
-             </Match>
-           </AllOf>
-         </AnyOf>
-       </Target>
-       <Condition>
-         <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:any-of">
-           <Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal" />
-           <AttributeValue 
-             DataType="http://www.w3.org/2001/XMLSchema#string">MissionManager</AttributeValue>
-           <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:2.0:subject:role"
-             DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"
-             Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" />
-         </Apply>
-       </Condition>
-     </Rule>
-   </Policy>
+  Version="1.0" 
+  PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-unless-permit">
+  <Description>Sample PolicySet</Description>
+  <Target />
+  <Policy PolicyId="MissionManagementApp" Version="1.0"
+   RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit">
+   <Description>Policy for MissionManagementApp</Description>
+   <Target>
+    <AnyOf>
+     <AllOf>
+      <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+       <AttributeValue 
+        DataType="http://www.w3.org/2001/XMLSchema#string">MissionManagementApp</AttributeValue>
+        <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+         AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" 
+         DataType="http://www.w3.org /2001/XMLSchema#string"
+         MustBePresent="true" />
+       </Match>
+      </AllOf>
+     </AnyOf>
+    </Target>
+   <Rule RuleId="MissionManager_role_can_manage_team" Effect="Permit">
+    <Description>Only MissionManager role authorized to manage the mission team</Description>
+    <Target>
+     <AnyOf>
+      <AllOf>
+       <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+        <AttributeValue 
+         DataType="http://www.w3.org/2001/XMLSchema#string">Team</AttributeValue>
+        <AttributeDesignator 
+         Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+         AttributeId="urn:thales:xacml:2.0:resource:sub-resource-id" 
+         DataType="http://www.w3.org/2001/XMLSchema#string"
+         MustBePresent="true" />
+       </Match>
+      </AllOf>
+     </AnyOf>
+     <AnyOf>
+      <AllOf>
+       <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+        <AttributeValue 
+         DataType="http://www.w3.org/2001/XMLSchema#string">manage</AttributeValue>
+        <AttributeDesignator 
+         Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action"
+         AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" 
+         DataType="http://www.w3.org/2001/XMLSchema#string"
+         MustBePresent="true" />
+       </Match>
+      </AllOf>
+     </AnyOf>
+    </Target>
+    <Condition>
+     <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:any-of">
+      <Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal" />
+       <AttributeValue 
+        DataType="http://www.w3.org/2001/XMLSchema#string">MissionManager</AttributeValue>
+       <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:2.0:subject:role"
+        DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"
+        Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" />
+     </Apply>
+    </Condition>
+   </Rule>
+  </Policy>
  </PolicySet>
 
 
@@ -337,40 +337,40 @@ In order to create this role hierarchy, we first add the Employee's *Permission 
 
  <?xml version="1.0" encoding="UTF-8"?>
  <PolicySet PolicySetId="PPS:Employee" Version="1.0"
-   PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-unless-permit">
-   <Description>Permissions specific to the Employee role</Description>
+  PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-unless-permit">
+  <Description>Permissions specific to the Employee role</Description>
+  <Target />
+  <Policy PolicyId="PP:Employee" Version="1.0"
+   RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit">
    <Target />
-   <Policy PolicyId="PP:Employee" Version="1.0"
-     RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit">
-     <Target />
-     <Rule RuleId="Permission_to_create_issue_ticket" Effect="Permit">
-       <Target>
-         <AnyOf>
-           <AllOf>
-             <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-               <AttributeValue 
-                 DataType="http://www.w3.org/2001/XMLSchema#string">https://acme.com/ticketservice/tickets</AttributeValue>
-               <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
-                 AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" 
-                 DataType="http://www.w3.org/2001/XMLSchema#string"
-                 MustBePresent="true" />
-             </Match>
-           </AllOf>
-         </AnyOf>
-         <AnyOf>
-           <AllOf>
-             <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-               <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</AttributeValue>
-               <AttributeDesignator 
-                 Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" 
-                 AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
-                 DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true" />
-             </Match>
-           </AllOf>
-         </AnyOf>
-       </Target>
-     </Rule>
-   </Policy>
+   <Rule RuleId="Permission_to_create_issue_ticket" Effect="Permit">
+    <Target>
+     <AnyOf>
+      <AllOf>
+       <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+        <AttributeValue 
+         DataType="http://www.w3.org/2001/XMLSchema#string">https://acme.com/ticketservice/tickets</AttributeValue>
+        <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+         AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" 
+         DataType="http://www.w3.org/2001/XMLSchema#string"
+         MustBePresent="true" />
+       </Match>
+      </AllOf>
+     </AnyOf>
+     <AnyOf>
+      <AllOf>
+       <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</AttributeValue>
+        <AttributeDesignator 
+         Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" 
+         AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+         DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true" />
+       </Match>
+      </AllOf>
+     </AnyOf>
+    </Target>
+   </Rule>
+  </Policy>
  </PolicySet>
 
 Then we add the role-based hierarchical policy defining the Employee role and the Manager role, both with a reference (<PolicySetIdReference>) to the Employee's *Permission PolicySet* added previously; except the Manager role one policy more, so more permissions::
@@ -382,81 +382,81 @@ Then we add the role-based hierarchical policy defining the Employee role and th
 
  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
  <PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" 
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   PolicySetId="rbac:policyset" Version="1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  PolicySetId="rbac:policyset" Version="1.0"
+  PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-unless-permit">
+  <Description>Root PolicySet</Description>
+  <Target />
+  <PolicySet PolicySetId="RPS:Employee" Version="1.0"
    PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-unless-permit">
-   <Description>Root PolicySet</Description>
-   <Target />
-   <PolicySet PolicySetId="RPS:Employee" Version="1.0"
-     PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-unless-permit">
-     <Description>Employee Role PolicySet</Description>
+   <Description>Employee Role PolicySet</Description>
+   <Target>
+    <AnyOf>
+     <AllOf>
+      <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+       <AttributeValue 
+        DataType="http://www.w3.org/2001/XMLSchema#string">Employee</AttributeValue>
+       <AttributeDesignator 
+        Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" 
+        AttributeId="urn:oasis:names:tc:xacml:2.0:subject:role"
+        DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true" />
+      </Match>
+     </AllOf>
+    </AnyOf>
+   </Target>
+   <PolicySetIdReference>PPS:Employee</PolicySetIdReference>
+  </PolicySet>
+  <PolicySet PolicySetId="RPS:Manager" Version="1.0"
+   PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-unless-permit">
+   <Description>Manager Role PolicySet</Description>
+   <Target>
+    <AnyOf>
+     <AllOf>
+      <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+       <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Manager</AttributeValue>
+       <AttributeDesignator 
+        Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" 
+        AttributeId="urn:oasis:names:tc:xacml:2.0:subject:role"
+        DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true" />
+      </Match>
+     </AllOf>
+    </AnyOf>
+   </Target>
+   <Policy PolicyId="PP1:Manager" Version="1.0"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit">
+    <Description>Permissions specific to Manager Role</Description>
+    <Target />
+    <Rule RuleId="Permission_to_create_new_project" Effect="Permit">
      <Target>
-       <AnyOf>
-         <AllOf>
-           <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-             <AttributeValue 
-               DataType="http://www.w3.org/2001/XMLSchema#string">Employee</AttributeValue>
-             <AttributeDesignator 
-               Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" 
-               AttributeId="urn:oasis:names:tc:xacml:2.0:subject:role"
-               DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true" />
-           </Match>
-         </AllOf>
-       </AnyOf>
+      <AnyOf>
+       <AllOf>
+        <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+         <AttributeValue 
+          DataType="http://www.w3.org/2001/XMLSchema#string">https://acme.com/ticketservice/projects</AttributeValue>
+         <AttributeDesignator 
+          Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" 
+          AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+          DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true" />
+        </Match>
+       </AllOf>
+      </AnyOf>
+      <AnyOf>
+       <AllOf>
+        <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+         <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</AttributeValue>
+         <AttributeDesignator 
+          Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" 
+          AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+          DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+        </Match>
+       </AllOf>
+      </AnyOf>
      </Target>
-     <PolicySetIdReference>PPS:Employee</PolicySetIdReference>
-   </PolicySet>
-   <PolicySet PolicySetId="RPS:Manager" Version="1.0"
-     PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-unless-permit">
-     <Description>Manager Role PolicySet</Description>
-     <Target>
-       <AnyOf>
-         <AllOf>
-           <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-             <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Manager</AttributeValue>
-             <AttributeDesignator 
-               Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" 
-               AttributeId="urn:oasis:names:tc:xacml:2.0:subject:role"
-               DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true" />
-           </Match>
-         </AllOf>
-       </AnyOf>
-     </Target>
-     <Policy PolicyId="PP1:Manager" Version="1.0"
-       RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit">
-       <Description>Permissions specific to Manager Role</Description>
-       <Target />
-       <Rule RuleId="Permission_to_create_new_project" Effect="Permit">
-         <Target>
-           <AnyOf>
-             <AllOf>
-               <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-                 <AttributeValue 
-                   DataType="http://www.w3.org/2001/XMLSchema#string">https://acme.com/ticketservice/projects</AttributeValue>
-                 <AttributeDesignator 
-                   Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" 
-                   AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
-                   DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true" />
-               </Match>
-             </AllOf>
-           </AnyOf>
-           <AnyOf>
-             <AllOf>
-               <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-                 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</AttributeValue>
-                 <AttributeDesignator 
-                   Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" 
-                   AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
-                   DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
-               </Match>
-             </AllOf>
-           </AnyOf>
-         </Target>
-       </Rule>
-     </Policy>
-     <!-- This role is senior to the Employee role, therefore includes the Employee role Permission PolicySet -->
-     <PolicySetIdReference>PPS:Employee</PolicySetIdReference>
-   </PolicySet>
+    </Rule>
+   </Policy>
+   <!-- This role is senior to the Employee role, therefore includes the Employee role Permission PolicySet -->
+   <PolicySetIdReference>PPS:Employee</PolicySetIdReference>
+  </PolicySet>
  </PolicySet>
 
 You may add more policies for more roles as you wish. Once you are satisfied with your role hierarchy, you may apply your new RBAC policy by updating the domain's root policy reference (this may not be necessary if you reused the same root policy ID as before, in which case your policy is already active by now)::
@@ -503,34 +503,45 @@ Example of request given below::
  Content-Length: 954
 
  <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
- <Request xmlns='urn:oasis:names:tc:xacml:3.0:core:schema:wd-17' CombinedDecision="false"
-    ReturnPolicyIdList="false">
-    <Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
-        <Attribute AttributeId='urn:oasis:names:tc:xacml:1.0:subject:subject-id'
-            IncludeInResult="false">
-            <AttributeValue DataType='http://www.w3.org/2001/XMLSchema#string'>joe</AttributeValue>
-        </Attribute>
-        <Attribute AttributeId="urn:oasis:names:tc:xacml:2.0:subject:role" IncludeInResult="false">
-            <AttributeValue DataType='http://www.w3.org/2001/XMLSchema#string'>Manager</AttributeValue>
-        </Attribute>
-    </Attributes>
-        <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
-            <Attribute AttributeId='urn:oasis:names:tc:xacml:1.0:resource:resource-id'
-                IncludeInResult="false">
-                <AttributeValue 
-                  DataType='http://www.w3.org/2001/XMLSchema#string'>MissionManagementApp</AttributeValue>
-            </Attribute>
-            <Attribute AttributeId='urn:thales:xacml:2.0:resource:sub-resource-id' IncludeInResult="false">
-                <AttributeValue DataType='http://www.w3.org/2001/XMLSchema#string'>Team</AttributeValue>
-            </Attribute>
-        </Attributes>
-        <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
-            <Attribute AttributeId='urn:oasis:names:tc:xacml:1.0:action:action-id'
-                IncludeInResult="false">
-                <AttributeValue DataType='http://www.w3.org/2001/XMLSchema#string'>manage</AttributeValue>
-            </Attribute>
-        </Attributes>
-        <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" />
+ <Request xmlns='urn:oasis:names:tc:xacml:3.0:core:schema:wd-17' 
+  CombinedDecision="false"
+  ReturnPolicyIdList="false">
+  <Attributes 
+   Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+   <Attribute AttributeId='urn:oasis:names:tc:xacml:1.0:subject:subject-id'
+    IncludeInResult="false">
+    <AttributeValue 
+     DataType='http://www.w3.org/2001/XMLSchema#string'>joe</AttributeValue>
+   </Attribute>
+   <Attribute AttributeId="urn:oasis:names:tc:xacml:2.0:subject:role" 
+    IncludeInResult="false">
+    <AttributeValue 
+     DataType='http://www.w3.org/2001/XMLSchema#string'>Manager</AttributeValue>
+   </Attribute>
+  </Attributes>
+  <Attributes 
+   Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+   <Attribute AttributeId='urn:oasis:names:tc:xacml:1.0:resource:resource-id'
+    IncludeInResult="false">
+    <AttributeValue 
+     DataType='http://www.w3.org/2001/XMLSchema#string'>MissionManagementApp</AttributeValue>
+   </Attribute>
+   <Attribute 
+    AttributeId='urn:thales:xacml:2.0:resource:sub-resource-id' 
+    IncludeInResult="false">
+    <AttributeValue DataType='http://www.w3.org/2001/XMLSchema#string'>Team</AttributeValue>
+   </Attribute>
+  </Attributes>
+  <Attributes 
+   Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
+   <Attribute AttributeId='urn:oasis:names:tc:xacml:1.0:action:action-id'
+    IncludeInResult="false">
+    <AttributeValue 
+     DataType='http://www.w3.org/2001/XMLSchema#string'>manage</AttributeValue>
+   </Attribute>
+  </Attributes>
+  <Attributes 
+   Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" />
  </Request>
 
 Response::
