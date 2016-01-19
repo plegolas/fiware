@@ -81,17 +81,17 @@ Domain Creation
 You create a domain by doing a HTTP POST request with XML payload to URL: ``http://${SERVER_NAME}:${PORT}/authzforce-ce/domains``. Replace ``${SERVER_NAME}`` and ``${PORT}`` with your server hostname and port for HTTP. You can do it with ``curl`` tool::
 
  $ export domainProperties="<?xml version="1.0" encoding="UTF-8" standalone="yes"?> \
- <ns4:domainProperties \ 
- xmlns:ns4="http://authzforce.github.io/rest-api-model/xmlns/authz/4" \
- externalId="external0"> \
- <description>This is my domain</description> \
- </ns4:domainProperties>"
+   <ns4:domainProperties \ 
+     xmlns:ns4="http://authzforce.github.io/rest-api-model/xmlns/authz/4" \
+     externalId="external0"> \
+     <description>This is my domain</description> \
+   </ns4:domainProperties>"
  
  $ curl --verbose --request POST \ 
- --header "Content-Type: application/xml;charset=UTF-8" \
- --data "$domainProperties" \
- --header "Accept: application/xml" \
- http://${SERVER_NAME}:${PORT}/authzforce-ce/domains
+   --header "Content-Type: application/xml;charset=UTF-8" \
+   --data "$domainProperties" \
+   --header "Accept: application/xml" \
+   http://${SERVER_NAME}:${PORT}/authzforce-ce/domains
  
  ...
  > POST /authzforce-ce/domains HTTP/1.1
@@ -109,8 +109,9 @@ You create a domain by doing a HTTP POST request with XML payload to URL: ``http
  < Transfer-Encoding: chunked
  <
  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
- <link xmlns="http://www.w3.org/2005/Atom" rel="item" href="h_D23LsDEeWFwqVFFMDLTQ" 
- title="h_D23LsDEeWFwqVFFMDLTQ"/>
+   <link xmlns="http://www.w3.org/2005/Atom" 
+   rel="item" href="h_D23LsDEeWFwqVFFMDLTQ" 
+   title="h_D23LsDEeWFwqVFFMDLTQ"/>
 
 **WARNING**: Mind the leading and trailing single quotes for the ``--data`` argument. Do not use double quotes instead of these single quotes, otherwise curl will remove the double quotes in the XML payload itself, and send invalid XML which will be rejected by the server. The ``--trace-ascii -`` argument (the last dash here means *stdout*) is indeed a way to check the actual request body sent by ``curl``. So use it only if you need to dump the outgoing (and incoming) data, in particular the request body, on *stdout*.  
 
@@ -124,8 +125,10 @@ You remove a domain by doing a HTTP DELETE request with XML payload to URL:
 
 For example with ``curl`` tool::
 
- $ curl --verbose --request DELETE --header "Content-Type: application/xml;charset=UTF-8" \
-     --header "Accept: application/xml" http://${SERVER_NAME}:${PORT}/authzforce-ce/domains/h_D23LsDEeWFwqVFFMDLTQ
+ $ curl --verbose --request DELETE \
+  --header "Content-Type: application/xml;charset=UTF-8" \
+  --header "Accept: application/xml" \ 
+  http://${SERVER_NAME}:${PORT}/authzforce-ce/domains/h_D23LsDEeWFwqVFFMDLTQ
 
 Policy administration is part of the Authorization Server API, addressed more extensively in the :ref:`programmerGuide`.
 
@@ -139,15 +142,17 @@ To check the proper deployment and operation of the Authorization Server, perfor
 
 #. Get the list of policy administration domains by doing the following HTTP request, replacing ``${host}`` with the server hostname, and ``${port}`` with the HTTP port of the server, for example with ``curl`` tool::
 
-    $ curl --verbose --show-error --write-out '\n' --request GET http://${host}:${port}/authzforce-ce/domains
+    $ curl --verbose --show-error --write-out '\n' \
+      --request GET http://${host}:${port}/authzforce-ce/domains
 #. Check the response which should have the following headers and body (there may be more headers which do not require checking here)::
 
     Status Code: 200 OK
     Content-Type: application/xml
     
     <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-    <ns2:resources xmlns:ns2="http://authzforce.github.io/rest-api-model/xmlns/authz/4">
-    ... list of links to policy domains omitted here... 
+    <ns2:resources 
+      xmlns:ns2="http://authzforce.github.io/rest-api-model/xmlns/authz/4">
+      ... list of links to policy domains omitted here... 
     </ns2:resources>
 
 You can check the exact body format in the representation element of response code 200 for method ``getDomains``, and all other API resources and operations in general, in the WADL (Web Application Description Language) document available at the following URL::
@@ -238,11 +243,13 @@ So this section is about creating a local Certificate Authority (CA) for issuing
 
 #. Generate the CA keypair and certificate on the platform where the Authorization Server is to be deployed (change the validity argument to your security requirements, example here is 365 days)::
 
-    $ keytool -genkeypair -keystore taz-ca-keystore.jks -alias taz-ca -dname "CN=Thales AuthzForce CA, O=FIWARE" \
-        -keyalg RSA -keysize 2048 -validity 365 -ext bc:c="ca:true,pathlen:0"
+    $ keytool -genkeypair -keystore taz-ca-keystore.jks -alias taz-ca \
+      -dname "CN=Thales AuthzForce CA, O=FIWARE" -keyalg RSA -keysize 2048 \
+      -validity 365 -ext bc:c="ca:true,pathlen:0"
 #. Export the CA certificate to PEM format for easier distribution to clients::
 
-    $ keytool -keystore taz-ca-keystore.jks -alias taz-ca -exportcert -rfc > taz-ca-cert.pem
+    $ keytool -keystore taz-ca-keystore.jks -alias taz-ca \
+      -exportcert -rfc > taz-ca-cert.pem
 
 
 Server SSL Certificate Setup
