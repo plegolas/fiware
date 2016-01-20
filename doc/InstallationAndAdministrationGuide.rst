@@ -186,9 +186,10 @@ Diagnosis Procedures
 #. If Tomcat fails to start, check for any Tomcat high-level error in Tomcat log directory: ``/var/log/tomcat7``
 #. If Tomcat is successfully started (no error in server logs), perform the test described in `End to End testing`_ again.
 #. If you still get a Connection Refused/error, check whether Tomcat is not listening on a different port:
-    ``$ sudo netstat -lataupen|grep java``
+
+    $ sudo netstat -lataupen|grep java
 #. If you still get a connection refused/error, especially if you are connecting remotely, check whether you are able to connect locally, then check the network link, i.e. whether any network filtering is in place on the host or on the access network, or other network issue: network interface status, DNS/IP adress resolution, routing, etc.
-#. If you get an error ``404 Not Found``, make sure the webapp is deployed and enabled in Tomcat. Check for any webapp deployment error in file: 
+#. If you get an error ``404 Not Found``, make sure there was no webapp deployment error in file: 
     ``/var/log/tomcat7/authzforce-ce/error.log``.
 
 
