@@ -91,7 +91,7 @@ For example, this request sets/updates the externalId to *my-domain-123* and the
  <ns4:domainProperties 
    xmlns:ns4="http://authzforce.github.io/rest-api-model/xmlns/authz/4" 
    externalId="my-domain-123">
-   <rootPolicyRef Version="2.1">PolicyDEF</rootPolicyRef>
+   <rootPolicyRef Version="2.1">PolicyABC</rootPolicyRef>
  </ns4:domainProperties>
 
 Note that the *Version* attribute is optional here. If omitted, the latest version available is used.
